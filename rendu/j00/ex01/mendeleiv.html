@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Tableau de Mendeleïv</title>
+		<style type="text/css">
+			body {}
+			#banner {text-align: center; margin: 50px;}
+			table {border-collapse: collapse; margin: auto; margin-bottom: 50px;}
+			table tr {}
+			table tr td {border: 4px solid white; width: 90px; padding: 5px; line-height: 5px;}
+			#legende tr td {border: 4px solid white; width: auto;}
+			.non_metaux {background-color: #B4BBA1;}
+			.metaux_alcalins {background-color: #C4C4C4;}
+			.metaux_alcalins_terreux {background-color: #C4B89E;}
+			.metaux_transition {background-color: #E5DEC5;}
+			.metaux_pauvres {background-color: #E2E3DF;}
+			.metalloides {background-color: #E3CFC8;}
+			.halogenes {background-color: #F4F0CA;}
+			.gaz_nobles {background-color: #DEF0F1;}
+			.lanthanides {background-color: #CCC5D5;}
+			.actinides {background-color: #E9DDEA;}
+			.blank {background-color: white;}
+			.poids {text-align: right; font-style: italic; margin: 5px;}
+			.symbole {text-align: center; font-size: 2em; margin: 32px;}
+			.numero {text-align: left; margin: 5px;}
+		</style>
+	</head>
+
+	<body>
+		<div id="main">
+			<div id="banner">
+				<h1>Tableau périodique des éléments de Mendeleïv.</h1>
+				<img src="http://goo.gl/0uFLvv">
+				<p><a href="http://fr.wikipedia.org/wiki/Dmitri_Mendele%C3%AFev">Dmitri Mendeleïv</a></p>
+			</div>
+			<table>
+				<tr>
+					<td class="non_metaux">
+						<p class="poids">1,00794</p>
+						<p class="symbole">H</p>
+						<p class="numero">1</p>
+					</td>
+					<td class="blank"></td>
+					<td class="blank"></td>
+					<td class="blank"></td>
+					<td class="blank"></td>
+					<td class="blank"></td>
+					<td class="blank"></td>
+					<td class="blank"></td>
+					<td class="blank"></td>
+					<td class="blank"></td>
+					<td class="blank"></td>
+					<td class="blank"></td>
+					<td class="blank"></td>
+					<td class="blank"></td>
+					<td class="blank"></td>
+					<td class="blank"></td>
+					<td class="blank"></td>
+					<td class="gaz_nobles">
+						<p class="poids">4,0026</p>
+						<p class="symbole">He</p>
+						<p class="numero">2</p>
+					</td>
+				</tr>
+				<tr>
+					<td class="metaux_alcalins">
+						<p class="poids">6,941</p>
+						<p class="symbole">Li</p>
+						<p class="numero">3</p>
+					</td>
+					<td class="metaux_alcalins_terreux">
+						<p class="poids">9,01218</p>
+						<p class="symbole">Be</p>
+						<p class="numero">4</p>
+					</td>
+					<td class="blank"></td>
+					<td class="blank"></td>
+					<td class="blank"></td>
+					<td class="blank"></td>
+					<td class="blank"></td>
+					<td class="blank"></td>
+					<td class="blank"></td>
+					<td class="blank"></td>
+					<td class="blank"></td>
+					<td class="blank"></td>
+					<td class="metalloides">
+						<p class="poids">10,811</p>
+						<p class="symbole">B</p>
+						<p class="numero">5</p>
+					</td>
+					<td class="non_metaux">
+						<p class="poids">12,0107</p>
+						<p class="symbole">C</p>
+						<p class="numero">6</p>
+					</td>
+					<td class="non_metaux">
+						<p class="poids">14,0067</p>
+						<p class="symbole">N</p>
+						<p class="numero">7</p>
+					</td>
+					<td class="non_metaux">
+						<p class="poids">15,9994</p>
+						<p class="symbole">O</p>
+						<p class="numero">8</p>
+					</td>
+					<td class="halogenes">
+						<p class="poids">18,9984</p>
+						<p class="symbole">F</p>
+						<p class="numero">9</p>
+					</td>
+					<td class="gaz_nobles">
+						<p class="poids">20,1797</p>
+						<p class="symbole">Ne</p>
+						<p class="numero">10</p>
+					</td>
+				</tr>
+				<tr>
+					<td class="metaux_alcalins">
+						<p class="poids">22,9898</p>
+						<p class="symbole">Na</p>
+						<p class="numero">11</p>
+					</td>
+					<td class="metaux_alcalins_terreux">
+						<p class="poids">24,305</p>
+						<p class="symbole">Mg</p>
+						<p class="numero">12</p>
+					</td>
+					<td class="blank"></td>
+					<td class="blank"></td>
+					<td class="blank"></td>
+					<td class="blank"></td>
+					<td class="blank"></td>
+					<td class="blank"></td>
+					<td class="blank"></td>
+					<td class="blank"></td>
+					<td class="blank"></td>
+					<td class="blank"></td>
+					<td class="metaux_pauvres">
+						<p class="poids">26,9815</p>
+						<p class="symbole">Al</p>
+						<p class="numero">13</p>
+					</td>
+					<td class="metalloides">
+						<p class="poids">28,0855</p>
+						<p class="symbole">Si</p>
+						<p class="numero">14</p>
+					</td>
+					<td class="non_metaux">
+						<p class="poids">30,9738</p>
+						<p class="symbole">P</p>
+						<p class="numero">15</p>
+					</td>
+					<td class="non_metaux">
+						<p class="poids">32,065</p>
+						<p class="symbole">S</p>
+						<p class="numero">16</p>
+					</td>
+					<td class="halogenes">
+						<p class="poids">35,453</p>
+						<p class="symbole">Cl</p>
+						<p class="numero">17</p>
+					</td>
+					<td class="gaz_nobles">
+						<p class="poids">39,948</p>
+						<p class="symbole">Ar</p>
+						<p class="numero">18</p>
+					</td>
+				</tr>
+				<tr>
+					<td class="metaux_alcalins">
+						<p class="poids">39,0983</p>
+						<p class="symbole">K</p>
+						<p class="numero">19</p>
+					</td>
+					<td class="metaux_alcalins_terreux">
+						<p class="poids">40,078</p>
+						<p class="symbole">Ca</p>
+						<p class="numero">20</p>
+					</td>
+					<td class="metaux_transition">
+						<p class="poids">44,9559</p>
+						<p class="symbole">Sc</p>
+						<p class="numero">21</p>
+					</td>
+					<td class="metaux_transition">
+						<p class="poids">47,867</p>
+						<p class="symbole">Ti</p>
+						<p class="numero">22</p>
+					</td>
+					<td class="metaux_transition">
+						<p class="poids">50,9415</p>
+						<p class="symbole">V</p>
+						<p class="numero">23</p>
+					</td>
+					<td class="metaux_transition">
+						<p class="poids">51,9961</p>
+						<p class="symbole">Cr</p>
+						<p class="numero">24</p>
+					</td>
+					<td class="metaux_transition">
+						<p class="poids">54,9380</p>
+						<p class="symbole">Mn</p>
+						<p class="numero">25</p>
+					</td>
+					<td class="metaux_transition">
+						<p class="poids">55,845</p>
+						<p class="symbole">Fe</p>
+						<p class="numero">26</p>
+					</td>
+					<td class="metaux_transition">
+						<p class="poids">58,9332</p>
+						<p class="symbole">Co</p>
+						<p class="numero">27</p>
+					</td>
+					<td class="metaux_transition">
+						<p class="poids">58,6934</p>
+						<p class="symbole">Ni</p>
+						<p class="numero">28</p>
+					</td>
+					<td class="metaux_transition">
+						<p class="poids">63,546</p>
+						<p class="symbole">Cu</p>
+						<p class="numero">29</p>
+					</td>
+					<td class="metaux_transition">
+						<p class="poids">65,38</p>
+						<p class="symbole">Zn</p>
+						<p class="numero">30</p>
+					</td>
+					<td class="metaux_pauvres">
+						<p class="poids">69,723</p>
+						<p class="symbole">Ga</p>
+						<p class="numero">31</p>
+					</td>
+					<td class="metalloides">
+						<p class="poids">72,63</p>
+						<p class="symbole">Ge</p>
+						<p class="numero">32</p>
+					</td>
+					<td class="metalloides">
+						<p class="poids">74,9216</p>
+						<p class="symbole">As</p>
+						<p class="numero">33</p>
+					</td>
+					<td class="non_metaux">
+						<p class="poids">78,96</p>
+						<p class="symbole">Se</p>
+						<p class="numero">34</p>
+					</td>
+					<td class="halogenes">
+						<p class="poids">79,904</p>
+						<p class="symbole">Br</p>
+						<p class="numero">35</p>
+					</td>
+					<td class="gaz_nobles">
+						<p class="poids">83,798</p>
+						<p class="symbole">Kr</p>
+						<p class="numero">36</p>
+					</td>
+				</tr>
+				<tr>
+					<td class="metaux_alcalins">
+						<p class="poids">85,4678</p>
+						<p class="symbole">Rb</p>
+						<p class="numero">37</p>
+					</td>
+					<td class="metaux_alcalins_terreux">
+						<p class="poids">87,62</p>
+						<p class="symbole">Sr</p>
+						<p class="numero">38</p>
+					</td>
+					<td class="metaux_transition">
+						<p class="poids">88,9058</p>
+						<p class="symbole">Y</p>
+						<p class="numero">39</p>
+					</td>
+					<td class="metaux_transition">
+						<p class="poids">91,224</p>
+						<p class="symbole">Zr</p>
+						<p class="numero">40</p>
+					</td>
+					<td class="metaux_transition">
+						<p class="poids">92,9064</p>
+						<p class="symbole">Nb</p>
+						<p class="numero">41</p>
+					</td>
+					<td class="metaux_transition">
+						<p class="poids">95,96</p>
+						<p class="symbole">Mo</p>
+						<p class="numero">42</p>
+					</td>
+					<td class="metaux_transition">
+						<p class="poids">{98}</p>
+						<p class="symbole">Tc</p>
+						<p class="numero">43</p>
+					</td>
+					<td class="metaux_transition">
+						<p class="poids">101,07</p>
+						<p class="symbole">Ru</p>
+						<p class="numero">44</p>
+					</td>
+					<td class="metaux_transition">
+						<p class="poids">102,905</p>
+						<p class="symbole">Rh</p>
+						<p class="numero">45</p>
+					</td>
+					<td class="metaux_transition">
+						<p class="poids">106,42</p>
+						<p class="symbole">Pd</p>
+						<p class="numero">46</p>
+					</td>
+					<td class="metaux_transition">
+						<p class="poids">107,868</p>
+						<p class="symbole">Ag</p>
+						<p class="numero">47</p>
+					</td>
+					<td class="metaux_transition">
+						<p class="poids">112,411</p>
+						<p class="symbole">Cd</p>
+						<p class="numero">48</p>
+					</td>
+					<td class="metaux_pauvres">
+						<p class="poids">114,818</p>
+						<p class="symbole">In</p>
+						<p class="numero">49</p>
+					</td>
+					<td class="metaux_pauvres">
+						<p class="poids">118,71</p>
+						<p class="symbole">Sn</p>
+						<p class="numero">50</p>
+					</td>
+					<td class="metalloides">
+						<p class="poids">121,76</p>
+						<p class="symbole">Sb</p>
+						<p class="numero">51</p>
+					</td>
+					<td class="metalloides">
+						<p class="poids">127,6</p>
+						<p class="symbole">Te</p>
+						<p class="numero">52</p>
+					</td>
+					<td class="halogenes">
+						<p class="poids">126,905</p>
+						<p class="symbole">I</p>
+						<p class="numero">53</p>
+					</td>
+					<td class="gaz_nobles">
+						<p class="poids">131,293</p>
+						<p class="symbole">Xe</p>
+						<p class="numero">54</p>
+					</td>
+				</tr>
+				<tr>
+					<td class="metaux_alcalins">
+						<p class="poids">132,905</p>
+						<p class="symbole">Cs</p>
+						<p class="numero">55</p>
+					</td>
+					<td class="metaux_alcalins_terreux">
+						<p class="poids">137,327</p>
+						<p class="symbole">Ba</p>
+						<p class="numero">56</p>
+					</td>
+					<td class="blank"></td>
+					<td class="metaux_transition">
+						<p class="poids">178,49</p>
+						<p class="symbole">Hf</p>
+						<p class="numero">72</p>
+					</td>
+					<td class="metaux_transition">
+						<p class="poids">180,948</p>
+						<p class="symbole">Ta</p>
+						<p class="numero">73</p>
+					</td>
+					<td class="metaux_transition">
+						<p class="poids">183,84</p>
+						<p class="symbole">W</p>
+						<p class="numero">74</p>
+					</td>
+					<td class="metaux_transition">
+						<p class="poids">186,207</p>
+						<p class="symbole">Re</p>
+						<p class="numero">75</p>
+					</td>
+					<td class="metaux_transition">
+						<p class="poids">190,23</p>
+						<p class="symbole">Os</p>
+						<p class="numero">76</p>
+					</td>
+					<td class="metaux_transition">
+						<p class="poids">192,217</p>
+						<p class="symbole">Ir</p>
+						<p class="numero">77</p>
+					</td>
+					<td class="metaux_transition">
+						<p class="poids">195,084</p>
+						<p class="symbole">Pt</p>
+						<p class="numero">78</p>
+					</td>
+					<td class="metaux_transition">
+						<p class="poids">196,967</p><p class="symbole">Au</p><p class="numero">79</p>
+					</td>
+					<td class="metaux_transition">
+						<p class="poids">200,59</p><p class="symbole">Hg</p><p class="numero">80</p>
+					</td>
+					<td class="metaux_pauvres">
+						<p class="poids">204,383</p><p class="symbole">Tl</p><p class="numero">81</p>
+					</td>
+					<td class="metaux_pauvres">
+						<p class="poids">207,2</p><p class="symbole">Pb</p><p class="numero">82</p>
+					</td>
+					<td class="metaux_pauvres">
+						<p class="poids">208,98</p><p class="symbole">Bi</p><p class="numero">83</p>
+					</td>
+					<td class="metalloides">
+						<p class="poids">{209}</p><p class="symbole">Po</p><p class="numero">84</p>
+					</td>
+					<td class="halogenes">
+						<p class="poids">{210}</p><p class="symbole">At</p><p class="numero">85</p>
+					</td>
+					<td class="gaz_nobles">
+						<p class="poids">{222}</p><p class="symbole">Rn</p><p class="numero">86</p>
+					</td>
+				</tr>
+				<tr>
+					<td class="metaux_alcalins">
+						<p class="poids">{223}</p><p class="symbole">Fr</p><p class="numero">87</p>
+					</td>
+					<td class="metaux_alcalins_terreux">
+						<p class="poids">{226}</p><p class="symbole">Ra</p><p class="numero">88</p>
+					</td>
+					<td class="blank"></td>
+					<td class="metaux_transition">
+						<p class="poids">{266}</p><p class="symbole">Rf</p><p class="numero">104</p>
+					</td>
+					<td class="metaux_transition">
+						<p class="poids">{268}</p><p class="symbole">Db</p><p class="numero">105</p>
+					</td>
+					<td class="metaux_transition">
+						<p class="poids">{269}</p><p class="symbole">Sg</p><p class="numero">106</p>
+					</td>
+					<td class="metaux_transition">
+						<p class="poids">{270}</p><p class="symbole">Bh</p><p class="numero">107</p>
+					</td>
+					<td class="metaux_transition">
+						<p class="poids">{269}</p><p class="symbole">Hs</p><p class="numero">108</p>
+					</td>
+					<td class="metaux_transition">
+						<p class="poids">{278}</p><p class="symbole">Mt</p><p class="numero">109</p>
+					</td>
+					<td class="metaux_transition">
+						<p class="poids">{279}</p><p class="symbole">Ds</p><p class="numero">110</p>
+					</td>
+					<td class="metaux_transition">
+						<p class="poids">{285}</p><p class="symbole">Rg</p><p class="numero">111</p>
+					</td>
+					<td class="metaux_transition">
+						<p class="poids">{285}</p><p class="symbole">Cn</p><p class="numero">112</p>
+					</td>
+					<td class="metaux_pauvres">
+						<p class="poids">{284}</p><p class="symbole">Uut</p><p class="numero">113</p>
+					</td>
+					<td class="metaux_pauvres">
+						<p class="poids">{289}</p><p class="symbole">Fl</p><p class="numero">114</p>
+					</td>
+					<td class="metaux_pauvres">
+						<p class="poids">{288}</p><p class="symbole">Uup</p><p class="numero">115</p>
+					</td>
+					<td class="metaux_pauvres">
+						<p class="poids">{293}</p><p class="symbole">Lv</p><p class="numero">116</p>
+					</td>
+					<td class="halogenes">
+						<p class="poids">{294}</p><p class="symbole">Uus</p><p class="numero">117</p>
+					</td>
+					<td class="gaz_nobles">
+						<p class="poids">{294}</p><p class="symbole">Uuo</p><p class="numero">118</p>
+					</td>
+				</tr>
+				<tr>
+					<td class="blank"></td>
+					<td class="blank"></td>
+					<td class="blank"></td>
+					<td class="lanthanides">
+						<p class="poids">138,906</p><p class="symbole">La</p><p class="numero">57</p>
+					</td>
+					<td class="lanthanides">
+						<p class="poids">140,116</p><p class="symbole">Ce</p><p class="numero">58</p>
+					</td>
+					<td class="lanthanides">
+						<p class="poids">140,908</p><p class="symbole">Pr</p><p class="numero">59</p>
+					</td>
+					<td class="lanthanides">
+						<p class="poids">144,242</p><p class="symbole">Nd</p><p class="numero">60</p>
+					</td>
+					<td class="lanthanides">
+						<p class="poids">{145}</p><p class="symbole">Pm</p><p class="numero">61</p>
+					</td>
+					<td class="lanthanides">
+						<p class="poids">150,36</p><p class="symbole">Sm</p><p class="numero">62</p>
+					</td>
+					<td class="lanthanides">
+						<p class="poids">151,964</p><p class="symbole">Eu</p><p class="numero">63</p>
+					</td>
+					<td class="lanthanides">
+						<p class="poids">157,25</p><p class="symbole">Gd</p><p class="numero">64</p>
+					</td>
+					<td class="lanthanides">
+						<p class="poids">158,925</p><p class="symbole">Tb</p><p class="numero">65</p>
+					</td>
+					<td class="lanthanides">
+						<p class="poids">162,5</p><p class="symbole">Dy</p><p class="numero">66</p>
+					</td>
+					<td class="lanthanides">
+						<p class="poids">164,930</p><p class="symbole">Ho</p><p class="numero">67</p>
+					</td>
+					<td class="lanthanides">
+						<p class="poids">167,259</p><p class="symbole">Er</p><p class="numero">68</p>
+					</td>
+					<td class="lanthanides">
+						<p class="poids">168,934</p><p class="symbole">Tm</p><p class="numero">69</p>
+					</td>
+					<td class="lanthanides">
+						<p class="poids">173,054</p><p class="symbole">Yb</p><p class="numero">70</p>
+					</td>
+					<td class="lanthanides">
+						<p class="poids">174,967</p><p class="symbole">Lu</p><p class="numero">71</p>
+					</td>
+				</tr>
+				<tr>
+					<td class="blank"></td>
+					<td class="blank"></td>
+					<td class="blank"></td>
+					<td class="actinides">
+						<p class="poids">{227}</p><p class="symbole">Ac</p><p class="numero">89</p>
+					</td>
+					<td class="actinides">
+						<p class="poids">232,038</p><p class="symbole">Th</p><p class="numero">90</p>
+					</td>
+					<td class="actinides">
+						<p class="poids">231,036</p><p class="symbole">Pa</p><p class="numero">91</p>
+					</td>
+					<td class="actinides">
+						<p class="poids">238,029</p><p class="symbole">U</p><p class="numero">92</p>
+					</td>
+					<td class="actinides">
+						<p class="poids">{237}</p><p class="symbole">Np</p><p class="numero">93</p>
+					</td>
+					<td class="actinides">
+						<p class="poids">{244}</p><p class="symbole">Pu</p><p class="numero">94</p>
+					</td>
+					<td class="actinides">
+						<p class="poids">{243}</p><p class="symbole">Am</p><p class="numero">95</p>
+					</td>
+					<td class="actinides">
+						<p class="poids">{247}</p><p class="symbole">Cm</p><p class="numero">96</p>
+					</td>
+					<td class="actinides">
+						<p class="poids">{247}</p><p class="symbole">Bk</p><p class="numero">97</p>
+					</td>
+					<td class="actinides">
+						<p class="poids">{251}</p><p class="symbole">Cf</p><p class="numero">98</p>
+					</td>
+					<td class="actinides">
+						<p class="poids">{252}</p><p class="symbole">Es</p><p class="numero">99</p>
+					</td>
+					<td class="actinides">
+						<p class="poids">{257}</p><p class="symbole">Fm</p><p class="numero">100</p>
+					</td>
+					<td class="actinides">
+						<p class="poids">{258}</p><p class="symbole">Md</p><p class="numero">101</p>
+					</td>
+					<td class="actinides">
+						<p class="poids">{259}</p><p class="symbole">No</p><p class="numero">102</p>
+					</td>
+					<td class="actinides">
+						<p class="poids">{262}</p><p class="symbole">Lr</p><p class="numero">103</p>
+					</td>
+				</tr>
+			</table>
+			<table id="legende">
+				<tr>
+					<td class="non_metaux"></td>
+					<td>Non métaux</td>
+					<td class="metalloides"></td>
+					<td>Métalloïdes</td>
+				</tr>
+				<tr>
+					<td class="metaux_alcalins"></td>
+					<td>Métaux alcalins</td>
+					<td class="halogenes"></td>
+					<td>Halogènes</td>
+				</tr>
+				<tr>
+					<td class="metaux_alcalins_terreux"></td>
+					<td>Métaux alcalins terreux</td>
+					<td class="gaz_nobles"></td>
+					<td>Gaz nobles</td>
+				</tr>
+				<tr>
+					<td class="metaux_transition"></td>
+					<td>Métaux de transition</td>
+					<td class="lanthanides"></td>
+					<td>Lanthanides</td>
+				</tr>
+				<tr>
+					<td class="metaux_pauvres"></td>
+					<td>Métaux pauvres</td>
+					<td class="actinides"></td>
+					<td>Actinides</td>
+				</tr>
+		</div>
+	</body>
+</html>
