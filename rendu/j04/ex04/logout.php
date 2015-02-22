@@ -1,5 +1,4 @@
 <?php
 session_start();
-print_r($_COOKIE);
-print_r($_SESSION);
+$_SESSION["loggued_on_user"] = "";
 ?>
