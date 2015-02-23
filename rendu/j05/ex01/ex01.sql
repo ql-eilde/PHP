@@ -7,4 +7,4 @@ CREATE TABLE `ft_table` (
 	`groupe` enum('staff', 'student', 'other') NOT NULL,
 	`date_de_creation` date NOT NULL,
 	PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=0;
