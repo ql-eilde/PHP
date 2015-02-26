@@ -17,19 +17,123 @@ class Vector
 
 	function getW() { return ($this->_w); }
 
+	function magnitude()
+	{
+		return (sqrt(pow($this->getX(), 2) + pow($this->getY(), 2) + pow($this->getZ(), 2)));
+	}
+
+	function normalize()
+	{
+		$magni = $this->magnitude();
+		if ($magni == 1)
+		{
+			$tab['x'] = $this->getX();
+			$tab['y'] = $this->getY();
+			$tab['z'] = $this->getZ();
+			$tab['w'] = $this->getW();
+			return (new Vector(array('dest' => $tab)));
+		}
+		$x = (($this->getX()) / $magni);
+		$y = (($this->getY()) / $magni);
+		$z = (($this->getZ()) / $magni);
+		$tab['x'] = $x;
+		$tab['y'] = $y;
+		$tab['z'] = $z;
+		$tab['w'] = 0;
+		return (new Vector(array('dest'=> $tab)));
+	}
+
+	function add($rhs)
+	{
+		$tab = get_object_vars($rhs);
+		return (new Vector(array('orig' => $this, 'dest' => $tab)));
+	}
+
+	function sub($rhs)
+	{
+		$tab = get_object_vars($rhs);
+		if ($tab['_x'] < 0)
+			$new['x'] = (abs($tab['_x']) - abs($this->getX()));
+		if ($tab['_x'] > 0)
+			$new['x'] = -(abs($tab['_x']) - abs($this->getX()));
+		if ($tab['_y'] < 0)
+			$new['y'] = (abs($tab['_y']) - abs($this->getY()));
+		if ($tab['_y'] > 0)
+			$new['y'] = -(abs($tab['_y']) - abs($this->getY()));
+		if ($tab['_z'] < 0)
+			$new['z'] = (abs($tab['_z']) - abs($this->getZ()));
+		if ($tab['_z'] > 0)
+			$new['z'] = -(abs($tab['_z']) - abs($this->getZ()));
+		$new['w'] = 0;
+		return (new Vector(array('dest' => $new)));
+	}
+
+	function opposite()
+	{
+		if ($this->getX() < 0)
+			$tab['x'] = abs($this->getX());
+		if ($this->getX() > 0)
+			$tab['x'] = -($this->getX());
+		if ($this->getY() < 0)
+			$tab['y'] = abs($this->getY());
+		if ($this->getY() > 0)
+			$tab['y'] = -($this->getY());
+		if ($this->getZ() < 0)
+			$tab['z'] = abs($this->getZ());
+		if ($this->getZ() > 0)
+			$tab['z'] = -($this->getZ());
+		$tab['w'] = 0;
+		return (new Vector(array('dest' => $tab)));
+	}
+
+	function scalarProduct($k)
+	{
+		$tab['x'] = ($this->getX() * $k);
+		$tab['y'] = ($this->getY() * $k);
+		$tab['z'] = ($this->getZ() * $k);
+		$tab['w'] = 0;
+		return (new Vector(array('dest' => $tab)));
+	}
+
+	function dotProduct($rhs)
+	{
+		$tab = get_object_vars($rhs);
+		$x = ($this->getX() * $tab['_x']);
+		$y = ($this->getY() * $tab['_y']);
+		$z = ($this->getZ() * $tab['_z']);
+		return ($x + $y + $z);
+	}
+
+	function cos($rhs)
+	{
+		$tab = get_object_vars($rhs);
+		$cos = (($this->dotProduct($rhs)) / sqrt((pow($this->getX(),2) + pow($this->getY(),2) + pow($this->getZ(),2)) * (pow($tab['_x'],2) + pow($tab['_y'],2) + pow($tab['_z'],2))));
+		return ($cos);
+	}
+
+	function crossProduct($rhs)
+	{
+		return ;
+	}
+
 	function __construct (array $kwargs)
 	{
-		$orig = (array)($kwargs['orig']);
-		$i = 0;
-		foreach ($orig as $key => $val)
+		if ($kwargs['orig'] === null)
+			$kwargs['orig'] = new Vertex(array('x'=>0.0,'y'=>0.0,'z'=>0.0,'w'=>1.0));
+		else
 		{
-			$tab[$i] = $val;
-			$i++;
+			$orig = (array)($kwargs['orig']);
+			$i = 0;
+			foreach ($orig as $key => $val)
+			{
+				$tab[$i] = $val;
+				$i++;
+			}
+			$orig_x = $tab[0];
+			$orig_y = $tab[1];
+			$orig_z = $tab[2];
+			$orig_w = $tab[3];
 		}
-		$orig_x = $tab[0];
-		$orig_y = $tab[1];
-		$orig_z = $tab[2];
-		$orig_w = $tab[3];
 		$dest = (array)($kwargs['dest']);
 		$i = 0;
 		foreach ($dest as $key => $val)
@@ -70,29 +174,4 @@ class Vector
 		return ('Vector( x: '.number_format($this->getX(),2).', y: '.number_format($this->getY(),2).', z: '.number_format($this->getZ(),2).', w: '.number_format($this->getW(),2).' )');
 	}
 }
-/*
-require_once 'Vertex.class.php';
-require_once 'Color.class.php';
-
-Vertex::$verbose = False;
-Vector::$verbose = True;
-
-$vtxO = new Vertex( array( 'x' => 0.0, 'y' => 0.0, 'z' => 0.0 ) );
-$vtxX = new Vertex( array( 'x' => 1.0, 'y' => 0.0, 'z' => 0.0 ) );
-$vtxY = new Vertex( array( 'x' => 0.0, 'y' => 1.0, 'z' => 0.0 ) );
-$vtxZ = new Vertex( array( 'x' => 0.0, 'y' => 0.0, 'z' => 1.0 ) );
-
-$vtcXunit = new Vector( array( 'orig' => $vtxO, 'dest' => $vtxX ) );
-$vtcYunit = new Vector( array( 'orig' => $vtxO, 'dest' => $vtxY ) );
-$vtcZunit = new Vector( array( 'orig' => $vtxO, 'dest' => $vtxZ ) );
-
-$dest1 = new Vertex( array( 'x' => -12.34, 'y' => 23.45, 'z' => -34.56 ) );
-Vertex::$verbose = True;
-$vtc1  = new Vector( array( 'dest' => $dest1 ) );
-Vertex::$verbose = False;
-
-$orig2 = new Vertex( array( 'x' => 23.87, 'y' => -37.95, 'z' => 78.34 ) );
-$dest2 = new Vertex( array( 'x' => -12.34, 'y' => 23.45, 'z' => -34.56 ) );
-$vtc2  = new Vector( array( 'orig' => $orig2, 'dest' => $dest2 ) );
- */
 ?>
