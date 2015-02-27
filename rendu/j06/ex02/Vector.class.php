@@ -113,7 +113,18 @@ class Vector
 
 	function crossProduct($rhs)
 	{
-		return ;
+		$tab = get_object_vars($rhs);
+		$yz = ($this->getY() * $tab['_z']);
+		$zy = ($this->getZ() * $tab['_y']);
+		$zx = ($this->getZ() * $tab['_x']);
+		$xz = ($this->getX() * $tab['_z']);
+		$xy = ($this->getX() * $tab['_y']);
+		$yx = ($this->getY() * $tab['_x']);
+		$new['x'] = ($yz - $zy);
+		$new['y'] = ($zx - $xz);
+		$new['z'] = ($xy - $yx);
+		$new['w'] = 0;
+		return (new Vector(array('dest' => $new)));
 	}
 
 	function __construct (array $kwargs)
