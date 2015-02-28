@@ -12,21 +12,9 @@ class Matrix
 	private $_vtcY;
 	private $_vtcZ;
 	private $_vtx0;
-	private $_x = 0;
-	private $_y = 0;
-	private $_z = 0;
-	private $_w = 0;
 	public static $verbose = False;
 
 	public function doc() { return (file_get_contents("./Matrix.class.txt")); }
-
-	public function getX() { return ($this->_x); }
-
-	public function getY() { return ($this->_y); }
-
-	public function getZ() { return ($this->_z); }
-
-	public function getW() { return ($this->_w); }
 
 	public function getVtcX($att) { return ($this->_vtcX[$att]); }
 
@@ -38,22 +26,22 @@ class Matrix
 
 	public function identity()
 	{
-		$this->_vtcX['x'] = $this->getX() + 1;
-		$this->_vtcX['y'] = $this->getY();
-		$this->_vtcX['z'] = $this->getZ();
-		$this->_vtcX['w'] = $this->getW();
-		$this->_vtcY['x'] = $this->getX();
-		$this->_vtcY['y'] = $this->getY() + 1;
-		$this->_vtcY['z'] = $this->getZ();
-		$this->_vtcY['w'] = $this->getW();
-		$this->_vtcZ['x'] = $this->getX();
-		$this->_vtcZ['y'] = $this->getY();
-		$this->_vtcZ['z'] = $this->getZ() + 1;
-		$this->_vtcZ['w'] = $this->getW();
-		$this->_vtx0['x'] = $this->getX();
-		$this->_vtx0['y'] = $this->getY();
-		$this->_vtx0['z'] = $this->getZ();
-		$this->_vtx0['w'] = $this->getW() + 1;
+		$this->_vtcX['x'] = 1;
+		$this->_vtcX['y'] = 0;
+		$this->_vtcX['z'] = 0;
+		$this->_vtcX['w'] = 0;
+		$this->_vtcY['x'] = 0;
+		$this->_vtcY['y'] = 1;
+		$this->_vtcY['z'] = 0;
+		$this->_vtcY['w'] = 0;
+		$this->_vtcZ['x'] = 0;
+		$this->_vtcZ['y'] = 0;
+		$this->_vtcZ['z'] = 1;
+		$this->_vtcZ['w'] = 0;
+		$this->_vtx0['x'] = 0;
+		$this->_vtx0['y'] = 0;
+		$this->_vtx0['z'] = 0;
+		$this->_vtx0['w'] = 1;
 	}
 
 	public function translation(array $trans)
@@ -61,10 +49,7 @@ class Matrix
 		$tab = (array)$trans['vtc'];
 		$i = 0;
 		foreach($tab as $key => $value)
-		{
-			$new[$i] = $value;
-			$i++;
-		}
+			$new[$i++] = $value;
 		$this->identity();
 		$this->_vtx0['x'] = $new[0];
 		$this->_vtx0['y'] = $new[1];
@@ -106,13 +91,92 @@ class Matrix
 		$this->_vtcY['y'] = cos($angle);
 	}
 
-	public function projection($rhs)
+private function projection( $fov, $ratio, $near, $far) {
+		$scale = tan(deg2rad($fov * 0.5)) * $near;
+		$right = $ratio * $scale;
+		$left = -$right;
+		$top = $scale;
+		$bottom = -$top;
+		self::frustrum($left, $right, $bottom, $top, $near, $far);
+	}
+
+	private function frustrum($left, $right, $bottom, $top, $near, $far) {
+		$this->_vtcX['x'] = (2 * $near) / ($right - $left);
+		$this->_vtcY['x'] = 0;
+		$this->_vtcZ['x'] = ($right + $left) / ($right - $left);
+		$this->_vtx0['x'] = 0;
+
+		$this->_vtcX['y'] = 0;
+		$this->_vtcY['y'] = (2 * $near) / ($top - $bottom);
+		$this->_vtcZ['y'] = ($top + $bottom) / ($top - $bottom);
+		$this->_vtx0['y'] = 0;
+
+		$this->_vtcX['z'] = 0;
+		$this->_vtcY['z'] = 0;
+		$this->_vtcZ['z'] = -(($far + $near) / ($far - $near));
+		$this->_vtx0['z'] = -((2 * $far * $near) / ($far - $near));
+
+		$this->_vtcX['w'] = 0;
+		$this->_vtcY['w'] = 0;
+		$this->_vtcZ['w'] = -1;
+		$this->_vtx0['w'] = 0;
+	}
+	public function mult($rhs)
 	{
-		$this->identity();
-		$this->_vtcX['x'] = (1 / 640);
-		$this->_vtcY['y'] = (1 / 480);
-		$this->_vtcZ['z'] = -(2 / (($rhs['far']) - ($rhs['near'])));
-		$this->_vtx0['z'] = -(($rhs['far']) + ($rhs['near']) / (($rhs['far']) - ($rhs['near'])));
+		$old_verbose = Matrix::$verbose;
+		Matrix::$verbose = false;
+		$result = new Matrix( ['preset' => Matrix::IDENTITY] );
+		Matrix::$verbose = $old_verbose;
+		$tab = (array)$rhs;
+		$i = 0;
+		foreach($tab as $key => $value)
+			$new[$i++] = $value;
+
+		$result->_vtcX['x'] = ($this->getVtcX('x') * $new[0]['x']) + ($this->getVtcY('x') * $new[0]['y']) +
+		($this->getVtcZ('x') * $new[0]['z']) + ($this->getVtx0('x') * $new[0]['w']);
+		$result->_vtcX['y'] = ($this->getVtcX('y') * $new[0]['x']) + ($this->getVtcY('y') * $new[0]['y']) +
+		($this->getVtcZ('y') * $new[0]['z']) + ($this->getVtx0('y') * $new[0]['w']);
+		$result->_vtcX['z'] = ($this->getVtcX('z') * $new[0]['x']) + ($this->getVtcY('z') * $new[0]['y']) +
+		($this->getVtcZ('z') * $new[0]['z']) + ($this->getVtx0('z') * $new[0]['w']);
+		$result->_vtcX['w'] = ($this->getVtcX('w') * $new[0]['x']) + ($this->getVtcY('w') * $new[0]['y']) +
+		($this->getVtcZ('w') * $new[0]['z']) + ($this->getVtx0('w') * $new[0]['w']);
+
+		$result->_vtcY['x'] = ($this->getVtcX('x') * $new[1]['x']) + ($this->getVtcY('x') * $new[1]['y']) +
+		($this->getVtcZ('x') * $new[1]['z']) + ($this->getVtx0('x') * $new[1]['w']);
+		$result->_vtcY['y'] = ($this->getVtcX('y') * $new[1]['x']) + ($this->getVtcY('y') * $new[1]['y']) +
+		($this->getVtcZ('y') * $new[1]['z']) + ($this->getVtx0('y') * $new[1]['w']);
+		$result->_vtcY['z'] = ($this->getVtcX('z') * $new[1]['x']) + ($this->getVtcY('z') * $new[1]['y']) +
+		($this->getVtcZ('z') * $new[1]['z']) + ($this->getVtx0('z') * $new[1]['w']);
+		$result->_vtcY['w'] = ($this->getVtcX('w') * $new[1]['x']) + ($this->getVtcY('w') * $new[1]['y']) +
+		($this->getVtcZ('w') * $new[1]['z']) + ($this->getVtx0('w') * $new[1]['w']);
+
+		$result->_vtcZ['x'] = ($this->getVtcX('x') * $new[2]['x']) + ($this->getVtcY('x') * $new[2]['y']) +
+		($this->getVtcZ('x') * $new[2]['z']) + ($this->getVtx0('x') * $new[2]['w']);
+		$result->_vtcZ['y'] = ($this->getVtcX('y') * $new[2]['x']) + ($this->getVtcY('y') * $new[2]['y']) +
+		($this->getVtcZ('y') * $new[2]['z']) + ($this->getVtx0('y') * $new[2]['w']);
+		$result->_vtcZ['z'] = ($this->getVtcX('z') * $new[2]['x']) + ($this->getVtcY('z') * $new[2]['y']) +
+		($this->getVtcZ('z') * $new[2]['z']) + ($this->getVtx0('z') * $new[2]['w']);
+		$result->_vtcZ['w'] = ($this->getVtcX('w') * $new[2]['x']) + ($this->getVtcY('w') * $new[2]['y']) +
+		($this->getVtcZ('w') * $new[2]['z']) + ($this->getVtx0('w') * $new[2]['w']);
+
+		$result->_vtx0['x'] = ($this->getVtcX('x') * $new[3]['x']) + ($this->getVtcY('x') * $new[3]['y']) +
+		($this->getVtcZ('x') * $new[3]['z']) + ($this->getVtx0('x') * $new[3]['w']);
+		$result->_vtx0['y'] = ($this->getVtcX('y') * $new[3]['x']) + ($this->getVtcY('y') * $new[3]['y']) +
+		($this->getVtcZ('y') * $new[3]['z']) + ($this->getVtx0('y') * $new[3]['w']);
+		$result->_vtx0['z'] = ($this->getVtcX('z') * $new[3]['x']) + ($this->getVtcY('z') * $new[3]['y']) +
+		($this->getVtcZ('z') * $new[3]['z']) + ($this->getVtx0('z') * $new[3]['w']);
+		$result->_vtx0['w'] = ($this->getVtcX('w') * $new[3]['x']) + ($this->getVtcY('w') * $new[3]['y']) +
+		($this->getVtcZ('w') * $new[3]['z']) + ($this->getVtx0('w') * $new[3]['w']);
+		return ($result);
+	}
+
+	public function transformVertex($vtx)
+	{
+		$x = $vtx->getX() * $this->getVtcX('x') + $vtx->getY() * $this->getVtcY('x') + $vtx->getZ() * $this->getVtcZ('x') + $this->getVtx0('x');
+		$y = $vtx->getX() * $this->getVtcX('y') + $vtx->getY() * $this->getVtcY('y') + $vtx->getZ() * $this->getVtcZ('y') + $this->getVtx0('y');
+		$z = $vtx->getX() * $this->getVtcX('z') + $vtx->getY() * $this->getVtcY('z') + $vtx->getZ() * $this->getVtcZ('z') + $this->getVtx0('z');
+		$w = $vtx->getX() * $this->getVtcX('w') + $vtx->getY() * $this->getVtcY('w') + $vtx->getZ() * $this->getVtcZ('w') + $this->getVtx0('w');
+		return (new Vertex(['x' => $x / $w, 'y' => $y / $w, 'z' => $z / $w]));
 	}
 
 	public function __construct(array $kwargs)
@@ -130,7 +194,7 @@ class Matrix
 		if ($kwargs['preset'] === self::RZ)
 			$this->rz($kwargs['angle']);
 		if ($kwargs['preset'] === self::PROJECTION)
-			$this->projection($kwargs);
+			$this->projection($kwargs['fov'], $kwargs['ratio'],$kwargs['near'], $kwargs['far']);
 		if (self::$verbose === True)
 			print('Matrix '.$kwargs['preset'].' instance constructed'.PHP_EOL);
 		return;
