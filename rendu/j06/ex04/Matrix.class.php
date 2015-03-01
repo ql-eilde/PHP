@@ -91,7 +91,7 @@ class Matrix
 		$this->_vtcY['y'] = cos($angle);
 	}
 
-private function projection( $fov, $ratio, $near, $far) {
+	public function projection( $fov, $ratio, $near, $far) {
 		$scale = tan(deg2rad($fov * 0.5)) * $near;
 		$right = $ratio * $scale;
 		$left = -$right;
