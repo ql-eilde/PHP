@@ -20,10 +20,10 @@ $s = new Sansa();
 
 $j->sleepWith($t);  //jaime + tyrion
 $j->sleepWith($s);	//jaime + sansa
-$j->sleepWith($c);	//
+$j->sleepWith($c);	//jaime + Cersei
 
-$t->sleepWith($j);
-$t->sleepWith($s);
-$t->sleepWith($c);
+$t->sleepWith($j);	//Tyrion + Jaime
+$t->sleepWith($s);	//Tyrion + Sansa
+$t->sleepWith($c);	//Tyrion + Cersei
 
 ?>
